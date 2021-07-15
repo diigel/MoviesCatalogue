@@ -1,0 +1,6 @@
+rootProject.name = "Movie Catalogue"
+include ':app'
+include ':data'
+include ':features:movies'
+include ':features:details'
+include ':features:favorites'
