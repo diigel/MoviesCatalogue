@@ -1,4 +1,4 @@
-package com.dani.movies
+package com.dani.movies.data.entity
 
 data class DiscoverMoviesDto(
     var id: Int,

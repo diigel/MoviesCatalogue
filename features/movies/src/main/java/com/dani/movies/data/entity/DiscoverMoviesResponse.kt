@@ -1,4 +1,4 @@
-package com.dani.movies
+package com.dani.movies.data.entity
 
 
 import com.google.gson.annotations.SerializedName

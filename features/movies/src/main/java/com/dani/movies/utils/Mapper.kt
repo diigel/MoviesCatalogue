@@ -1,7 +1,8 @@
-package com.dani.movies
+package com.dani.movies.utils
 
 import com.dani.data.nonNullable
-import com.dani.movies.DiscoverMoviesDto.Companion.nonNullable
+import com.dani.movies.data.entity.DiscoverMoviesDto
+import com.dani.movies.data.entity.DiscoverMoviesResponse
 
 object Mapper {
 
@@ -12,7 +13,7 @@ object Mapper {
                 originalTitle = it.originalTitle.nonNullable(),
                 overview = it.overview.nonNullable(),
                 posterPath = it.posterPath.nonNullable()
-            ).nonNullable()
+            )
         } ?: emptyList()
     }
 }
