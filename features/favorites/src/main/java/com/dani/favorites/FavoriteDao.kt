@@ -13,9 +13,9 @@ interface FavoriteDao {
     @Insert
     suspend fun insertFavorite(entity: MovieEntity)
 
-    @Query("delete from favorite where id = :id")
-    suspend fun deleteFavorite(id :Int)
+    @Query("delete from favorite where movie_id = :movie_id")
+    suspend fun deleteFavorite(movie_id :Int)
 
-    @Query("select * from favorite where id = :id")
-    suspend fun getFavoriteById(id:Int) : MovieEntity
+    @Query("select * from favorite where movie_id = :movie_id")
+    suspend fun getFavoriteById(movie_id:Int) : MovieEntity?
 }

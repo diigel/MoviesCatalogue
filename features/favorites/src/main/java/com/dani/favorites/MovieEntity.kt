@@ -9,6 +9,8 @@ import kotlin.random.Random
 data class MovieEntity(
     @PrimaryKey(autoGenerate = true)
     val id : Int = Random.nextInt(),
+    @ColumnInfo(name = "movie_id")
+    val movieId : Int ,
     @ColumnInfo(name = "original_title")
     var originalTitle: String,
     @ColumnInfo(name = "overview")
