@@ -1,7 +1,9 @@
-package com.dani.favorites
+package com.dani.favorites.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dani.favorites.repository.FavoriteRepository
+import com.dani.favorites.data.entity.MovieEntity
 import kotlinx.coroutines.launch
 
 class FavoriteViewModel(private val repository: FavoriteRepository) : ViewModel() {

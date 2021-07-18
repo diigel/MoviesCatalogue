@@ -1,5 +1,7 @@
 package com.dani.favorites
 
+import com.dani.favorites.data.entity.MovieEntity
+
 object Constant {
     val movie1 = MovieEntity(
         id = 1,

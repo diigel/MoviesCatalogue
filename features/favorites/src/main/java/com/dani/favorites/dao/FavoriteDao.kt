@@ -1,8 +1,9 @@
-package com.dani.favorites
+package com.dani.favorites.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.dani.favorites.data.entity.MovieEntity
 
 @Dao
 interface FavoriteDao {

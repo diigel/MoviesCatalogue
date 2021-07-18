@@ -1,6 +1,7 @@
-package com.dani.favorites
+package com.dani.favorites.repository
 
 import androidx.lifecycle.LiveData
+import com.dani.favorites.data.entity.MovieEntity
 
 interface FavoriteRepository {
     var movies : LiveData<List<MovieEntity>>
