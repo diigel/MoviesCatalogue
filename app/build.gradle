@@ -43,6 +43,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+    implementation "io.insert-koin:koin-android:3.0.1"
+
     implementation project(":features:movies")
     implementation project(":features:details")
     implementation project(":features:favorites")

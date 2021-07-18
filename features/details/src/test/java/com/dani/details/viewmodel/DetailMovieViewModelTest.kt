@@ -30,7 +30,7 @@ class DetailMovieViewModelTest {
     private lateinit var repository: DetailMovieRepository
     private lateinit var services: Services
 
-    private val mockWebServer = MockWebServer()
+        private val mockWebServer = MockWebServer()
 
     @Before
     fun `setup before`() {
