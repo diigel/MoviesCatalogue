@@ -1,4 +1,4 @@
-package com.dani.movies.utils
+package com.dani.testutils
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

@@ -1,4 +1,4 @@
-package com.dani.movies
+package com.dani.testutils
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -11,12 +11,12 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
 
-internal fun MockWebServer.openFile(file : String) : BufferedSource? {
+ fun MockWebServer.openFile(file : String) : BufferedSource? {
     val input = javaClass.classLoader?.getResourceAsStream("responses/$file")
     return input?.source()?.buffer()
 }
 
-internal fun MockWebServer.mockResponse(file: String,code : Int){
+ fun MockWebServer.mockResponse(file: String, code : Int){
     val source = openFile(file)
     source?.let {
         enqueue(
@@ -29,7 +29,7 @@ internal fun MockWebServer.mockResponse(file: String,code : Int){
 
 fun <T> LiveData<T>.getOrAwaitValue(
     time : Long = 2,
-    timeUnit: TimeUnit= TimeUnit.SECONDS
+    timeUnit: TimeUnit = TimeUnit.SECONDS
 ) : T {
     var data : T? = null
     val latch = CountDownLatch(1)

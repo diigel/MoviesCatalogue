@@ -5,15 +5,4 @@ data class DiscoverMoviesDto(
     var originalTitle: String,
     var overview: String,
     var posterPath: String,
-) {
-    companion object {
-        fun DiscoverMoviesDto?.nonNullable(): DiscoverMoviesDto {
-            return DiscoverMoviesDto(
-                id = 0,
-                originalTitle = "",
-                overview = "",
-                posterPath = ""
-            )
-        }
-    }
-}
+)
