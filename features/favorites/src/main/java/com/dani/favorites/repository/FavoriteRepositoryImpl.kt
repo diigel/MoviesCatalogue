@@ -1,9 +1,11 @@
-package com.dani.favorites
+package com.dani.favorites.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.dani.data.toJson
+import com.dani.favorites.dao.FavoriteDao
+import com.dani.favorites.data.entity.MovieEntity
 
 class FavoriteRepositoryImpl(private val favoriteDao: FavoriteDao) : FavoriteRepository {
 

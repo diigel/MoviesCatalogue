@@ -1,7 +1,9 @@
 package com.dani.favorites
 
-class FavoriteFakeDao : FavoriteDao {
+import com.dani.favorites.dao.FavoriteDao
+import com.dani.favorites.data.entity.MovieEntity
 
+class FavoriteFakeDao : FavoriteDao {
 
     private val favoriteList : MutableList<MovieEntity> = mutableListOf()
 

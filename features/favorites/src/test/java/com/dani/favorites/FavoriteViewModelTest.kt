@@ -2,6 +2,10 @@ package com.dani.favorites
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.dani.data.toJson
+import com.dani.favorites.dao.FavoriteDao
+import com.dani.favorites.repository.FavoriteRepository
+import com.dani.favorites.repository.FavoriteRepositoryImpl
+import com.dani.favorites.viewmodel.FavoriteViewModel
 import com.dani.testutils.MainCoroutineRule
 import com.dani.testutils.getOrAwaitValue
 import junit.framework.TestCase.assertEquals
@@ -20,9 +24,9 @@ class FavoriteViewModelTest {
     @get : Rule
     var mainCoroutineRule = MainCoroutineRule()
 
-    lateinit var viewModel: FavoriteViewModel
-    lateinit var repository: FavoriteRepository
-    lateinit var dao: FavoriteDao
+    private lateinit var viewModel: FavoriteViewModel
+    private lateinit var repository: FavoriteRepository
+    private lateinit var dao: FavoriteDao
 
     @Before
     fun `setup before`() {
