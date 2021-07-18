@@ -1,5 +1,4 @@
 apply from : '../../feature.gradle'
 
 dependencies {
-
 }

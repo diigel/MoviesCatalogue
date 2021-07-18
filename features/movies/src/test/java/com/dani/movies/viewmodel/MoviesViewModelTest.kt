@@ -1,12 +1,13 @@
 package com.dani.movies.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.dani.movies.*
 import com.dani.movies.data.Services
 import com.dani.movies.repository.MoviesRepository
 import com.dani.movies.repository.MoviesRepositoryImpl
-import com.dani.movies.utils.MainCoroutineRule
-import com.dani.movies.utils.ServiceMock
+import com.dani.testutils.MainCoroutineRule
+import com.dani.testutils.ServiceMock
+import com.dani.testutils.getOrAwaitValue
+import com.dani.testutils.mockResponse
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -51,8 +52,13 @@ class MoviesViewModelTest {
         viewModel.getMovies()
         val result = viewModel.movies.getOrAwaitValue()
 
+        // create hardcore list id from  response
         val expectationIds = listOf(851447, 851446, 851445, 851438, 851436)
+
+        // get list id from response
         val resultIds = result.map { it.id }
+
+        // hardcore id and list id response must be the same
         println("result ----")
         println(result)
         println("result end ----")

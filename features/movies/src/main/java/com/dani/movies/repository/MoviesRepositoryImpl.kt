@@ -7,7 +7,9 @@ import com.dani.movies.data.Services
 import com.dani.movies.data.entity.DiscoverMoviesDto
 import com.dani.movies.utils.Mapper
 
-class MoviesRepositoryImpl(private val service: Services) : MoviesRepository {
+class MoviesRepositoryImpl(
+    private val service: Services
+) : MoviesRepository {
 
     private val _mutableResult: MutableLiveData<List<DiscoverMoviesDto>> = MutableLiveData()
     override var result: LiveData<List<DiscoverMoviesDto>> = _mutableResult
