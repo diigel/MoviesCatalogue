@@ -29,8 +29,8 @@ class FavoriteViewModel(private val repository: FavoriteRepository) : ViewModel(
     }
 
     fun removeFavoriteMovie(movieId: Int) = viewModelScope.launch {
-        val entity = repository.getFavoriteMovieInline(movieId)
-        repository.removeFavoriteMovie(entity)
+        val movieIds = repository.getFavoriteMovieInline(movieId)
+            repository.removeFavoriteMovie(movieIds)
     }
 
     suspend fun requestCheckFavoriteById(movieId: Int): LiveData<Boolean> {

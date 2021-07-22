@@ -11,6 +11,7 @@ import com.dani.favorites.di.favoriteViewModel
 import com.dani.movie.di.searchRepository
 import com.dani.movie.di.searchServices
 import com.dani.movie.di.searchViewModel
+import com.dani.movies.di.movieDatabase
 import com.dani.movies.di.movieRepository
 import com.dani.movies.di.movieServices
 import com.dani.movies.di.movieViewModel
@@ -36,6 +37,7 @@ class MainApplication : Application() {
                 searchRepository,
                 searchViewModel,
                 movieServices,
+                movieDatabase,
                 movieRepository,
                 movieViewModel,
                 detailMovieServices,

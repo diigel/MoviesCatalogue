@@ -11,7 +11,8 @@ object Constant {
         posterPath = "/7TSZqK7H0OF8k6GuRNwWIprlBo9.jpg",
         backdropPath = "asal",
         releaseDate = "2021-03-20",
-        millis = System.currentTimeMillis()
+        millis = System.currentTimeMillis(),
+        popularity = 0.0
     )
     val movie2 = FavoriteEntity(
         id = 2,
@@ -21,7 +22,8 @@ object Constant {
         posterPath = "/bEcHI328Hs62itbUbuhFUeF0wn4.jpg",
         backdropPath = "asal",
         releaseDate = "2021-03-20",
-        millis = System.currentTimeMillis()
+        millis = System.currentTimeMillis(),
+        popularity = 0.0
     )
     val movie3 = FavoriteEntity(
         id = 3,
@@ -31,7 +33,8 @@ object Constant {
         posterPath = "/7TSZqK7H0OF8k6GuRNwWIprlBo9.jpg",
         backdropPath = "",
         releaseDate = "2021-03-20",
-        millis = System.currentTimeMillis()
+        millis = System.currentTimeMillis(),
+        popularity = 0.0
     )
     val movie4 = FavoriteEntity(
         id = 4,
@@ -41,7 +44,8 @@ object Constant {
         posterPath = "",
         backdropPath = "",
         releaseDate = "2021-03-20",
-        millis = System.currentTimeMillis()
+        millis = System.currentTimeMillis(),
+        popularity = 0.0
     )
 
     val listMovieEntity = listOf(movie1, movie2, movie3, movie4)

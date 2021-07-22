@@ -32,12 +32,11 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
         binding.run {
             rvFavorite.layoutManager = GridLayoutManager(context, 1)
             rvFavorite.adapter = favoriteAdapter
-            favoriteAdapter.onClickFavorite {
-                val movieId = it.movieId
-                viewModel.navigateToDetailMovie(movieId)
+            favoriteAdapter.onClickFavorite { favEntity ->
+                val movieId = favEntity.movieId
+                movieId?.let { it -> viewModel.navigateToDetailMovie(it) }
             }
             initObserver()
-
         }
     }
 

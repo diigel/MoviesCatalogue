@@ -2,6 +2,9 @@ package com.dani.movies.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.dani.data.toJson
+import com.dani.movies.Constant
+import com.dani.movies.MoviesFakeDao
+import com.dani.movies.dao.MovieDao
 import com.dani.movies.data.Services
 import com.dani.movies.repository.MoviesRepository
 import com.dani.movies.repository.MoviesRepositoryImpl
@@ -30,13 +33,15 @@ class MoviesViewModelTest {
     private lateinit var viewModel: MoviesViewModel
     private lateinit var repository: MoviesRepository
     private lateinit var services: Services
+    private lateinit var moviesDao : MovieDao
 
     private val mockWebServer = MockWebServer()
 
     @Before
     fun `setup before`() {
+        moviesDao = MoviesFakeDao()
         services = ServiceMock.create(mockWebServer.url("/"))
-        repository = MoviesRepositoryImpl(services)
+        repository = MoviesRepositoryImpl(services,moviesDao)
         viewModel = MoviesViewModel(repository)
     }
 
@@ -66,6 +71,44 @@ class MoviesViewModelTest {
         println()
 
         assertEquals(expectationIds, actual)
+    }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun `locale movies should be success` () = runBlockingTest {
+        viewModel.addLocaleMovies(Constant.movie1)
+
+        viewModel.getLocaleMovies()
+
+        val getLocaleMovie = viewModel.localeMovies.getOrAwaitValue()
+
+        // create hardcore list id from  response
+        val expectationListIds = listOf(Constant.movie1)
+
+        // hardcore id and list id response must be the same
+        println("result ----")
+        println(getLocaleMovie.toJson())
+        println("result end ----")
+        println()
+
+        assertEquals(expectationListIds, getLocaleMovie)
+    }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun `remove locale movies should be success` () = runBlockingTest {
+        viewModel.addLocaleMovies(Constant.movie1)
+        viewModel.addLocaleMovies(Constant.movie2)
+
+        viewModel.removeLocaleMovies(Constant.movie3)
+
+        viewModel.getLocaleMovies()
+        val getLocaleMovie = viewModel.localeMovies.getOrAwaitValue()
+
+        val expectationEntity = Constant.movie1
+        val resultEntity = getLocaleMovie.find { it.movieId == expectationEntity.movieId }
+
+        assertEquals(expectationEntity,resultEntity)
     }
 
 
