@@ -1,0 +1,56 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/qVifUyIDScLfuPu8GKF40TkJvX5.jpg",
+      "genre_ids": [
+        28,
+        16
+      ],
+      "id": 69738,
+      "original_language": "es",
+      "original_title": "AAA: la película",
+      "overview": "On the night that Parka pried the championship from Abismo Negro's hands, the master of darkness' long lasting resentments resurge, thus threatening AAA's stability. With the help of Chesman, Charly Manson, and Cybernético, Abismo plots his revenge. Not even Octagón, AAA's spiritual leader, can stop the evil turn of events. When Kenzo Suzuki and Yonatan, Parka's younger brother, are kidnapped, it's quite clear the war has begun. Parka, helped by Gronda, Mascarita, Faby Apache, and Octagón, will fight to their very last breath to overcome the obstacles. The sudden appearance of a long lost evil, Triple A's ancestral enemy, rises the odds even more. An abandoned insane asylum, murderous cyborgs, gigantic dragonflies, ancient armies, and time travel are just the beginning of the adventure. The most spectacular lucha libre match ever is about to begin...",
+      "popularity": 1.962,
+      "poster_path": "/qV84RKWrCCWefCPeRLCrPQLu3ka.jpg",
+      "release_date": "2010-02-16",
+      "title": "AAA - The Movie",
+      "video": false,
+      "vote_average": 6.2,
+      "vote_count": 20
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 476199,
+      "original_language": "en",
+      "original_title": "AAA AAA",
+      "overview": "The video tape shows the half-length portraits of Abramović and her husband Ulay standing opposite each other, looking at each other and producing a long sound with open mouths.",
+      "popularity": 0.6,
+      "poster_path": "/mMmwJIrR2hKzK7EB7oRhYysh1xG.jpg",
+      "release_date": "1978-01-01",
+      "title": "AAA AAA",
+      "video": false,
+      "vote_average": 6.1,
+      "vote_count": 6
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/wvVUGDOuoN8d9GfBmAjV38POYIQ.jpg",
+      "genre_ids": [],
+      "id": 546205,
+      "original_language": "es",
+      "original_title": "AAA TripleMania XXVI",
+      "overview": "The event marks the 26th year in a row that AAA had held a Triplemanía show, and the 32nd show held under the Triplemanía banner since 1993.",
+      "popularity": 1.432,
+      "poster_path": "/jRBjuB8BkNCPiQVF2cvbfE9yA06.jpg",
+      "release_date": "2018-08-26",
+      "title": "AAA TripleMania XXVI",
+      "video": true,
+      "vote_average": 9,
+      "vote_count": 2
+    }
+  ]
+}

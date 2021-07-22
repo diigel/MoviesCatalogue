@@ -1,17 +1,17 @@
 package com.dani.favorites
 
 import com.dani.favorites.dao.FavoriteDao
-import com.dani.favorites.data.entity.MovieEntity
+import com.dani.favorites.data.entity.FavoriteEntity
 
 class FavoriteFakeDao : FavoriteDao {
 
-    private val favoriteList : MutableList<MovieEntity> = mutableListOf()
+    private val favoriteList : MutableList<FavoriteEntity> = mutableListOf()
 
-    override suspend fun getMovieFavorite(): List<MovieEntity> {
+    override suspend fun getMovieFavorite(): List<FavoriteEntity> {
         return favoriteList
     }
 
-    override suspend fun insertFavorite(entity: MovieEntity) {
+    override suspend fun insertFavorite(entity: FavoriteEntity) {
         favoriteList.add(entity)
     }
 
@@ -20,7 +20,7 @@ class FavoriteFakeDao : FavoriteDao {
         favoriteList.remove(findMovie)
     }
 
-    override suspend fun getFavoriteById(movie_id: Int): MovieEntity? {
+    override suspend fun getFavoriteById(movie_id: Int): FavoriteEntity? {
         return favoriteList.find { it.movieId == movie_id }
     }
 }

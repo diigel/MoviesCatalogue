@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation"
+    app:startDestination="@id/movieFragment">
+
+    <action
+        android:id="@+id/action_to_detailMovieFragment"
+        app:destination="@id/detailMovieFragment" />
+
+    <fragment
+        android:id="@+id/movieFragment"
+        android:name="com.dani.movies.ui.fragment.MovieFragment"
+        android:label="MovieFragment">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.dani.favorites.ui.fragment.FavoriteFragment"
+        android:label="FavoriteFragment">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailMovieFragment"
+        android:name="com.dani.details.ui.DetailMovieFragment"
+        android:label="DetailMovieFragment" />
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.dani.movie.ui.fragment.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+    </fragment>
+</navigation>

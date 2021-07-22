@@ -30,7 +30,7 @@ class DetailMovieViewModelTest {
     private lateinit var repository: DetailMovieRepository
     private lateinit var services: Services
 
-        private val mockWebServer = MockWebServer()
+    private val mockWebServer = MockWebServer()
 
     @Before
     fun `setup before`() {
@@ -53,11 +53,11 @@ class DetailMovieViewModelTest {
         val result = viewModel.detailMovie.getOrAwaitValue()
 
         val expectationIds = 851438
-        val idRes = result.id
+        val actual = result.id
 
         println("-------------- result detail movie")
         println(result)
         println("-------------- end result detail movie")
-        assertEquals(expectationIds, idRes)
+        assertEquals(expectationIds, actual)
     }
 }
