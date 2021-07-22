@@ -1,18 +1,19 @@
 package com.dani.movies.ui.fragment
 
-import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.dani.data.loaderDialog
+import com.dani.data.toJson
 import com.dani.movies.R
 import com.dani.movies.databinding.FragmentMovieBinding
 import com.dani.movies.ui.adapter.MovieAdapter
+import com.dani.movies.utils.Mapper
 import com.dani.movies.viewmodel.MoviesViewModel
 
 class MovieFragment : Fragment(R.layout.fragment_movie) {
@@ -36,19 +37,30 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
                 viewModel.navigateToDetailMovie(movieId)
             }
         }
-        viewModel.getMovies()
+        viewModel.getLocaleMovies()
         initObserver()
     }
 
-    @SuppressLint("ShowToast")
     private fun initObserver(){
         loader?.show()
         viewModel.movies.observe(viewLifecycleOwner,{ data ->
             loader?.dismiss()
+            Log.d("Movie Data ", "initObserver: remote data is -> ${data.toJson()}")
             if (data != null){
                 movieAdapter.addList(data)
             }else{
-                Toast.makeText(context,"Somthing went wrong",Toast.LENGTH_LONG)
+                Toast.makeText(context,"Somthing went wrong",Toast.LENGTH_LONG).show()
+            }
+        })
+
+        viewModel.localeMovies.observe(viewLifecycleOwner,{ localeData ->
+            Log.d("Locale Data", "initObserver: localeData is -> ${localeData.toJson()}")
+            loader?.dismiss()
+            if (localeData.isNotEmpty()){
+                val mapToMovieDto = Mapper.mapMovieEntityToDto(localeData)
+                movieAdapter.addList(mapToMovieDto)
+            }else{
+                viewModel.getMovies()
             }
         })
     }

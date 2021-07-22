@@ -15,12 +15,13 @@ class FavoriteFakeDao : FavoriteDao {
         favoriteList.add(entity)
     }
 
-    override suspend fun deleteFavorite(movie_id: Int) {
-        val findMovie =  favoriteList.find { it.movieId == movie_id }
+    override suspend fun deleteFavorite(movieId: Int) {
+        val findMovie =  favoriteList.find { it.movieId == movieId }
         favoriteList.remove(findMovie)
     }
 
-    override suspend fun getFavoriteById(movie_id: Int): FavoriteEntity? {
-        return favoriteList.find { it.movieId == movie_id }
+    override suspend fun getFavoriteById(movieId: Int): FavoriteEntity {
+        val favoriteList = favoriteList.find { it.movieId == movieId }
+        return favoriteList!!
     }
 }

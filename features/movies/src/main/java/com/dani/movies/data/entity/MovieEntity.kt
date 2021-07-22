@@ -1,28 +1,28 @@
-package com.dani.favorites.data.entity
+package com.dani.movies.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlin.random.Random
 
-@Entity(tableName = "favorite")
-data class FavoriteEntity(
+@Entity(tableName = "movie")
+data class MovieEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = Random.nextInt(),
     @ColumnInfo(name = "movie_id")
-    val movieId: Int?,
+    val movieId: Int,
     @ColumnInfo(name = "original_title")
-    var originalTitle: String,
+    val originalTitle: String,
     @ColumnInfo(name = "overview")
-    var overview: String,
+    val overview: String,
     @ColumnInfo(name = "poster_path")
-    var posterPath: String,
+    val posterPath: String,
     @ColumnInfo(name = "backdrop_path")
-    var backdropPath: String,
+    val backdropPath: String,
     @ColumnInfo(name = "release_date")
-    var releaseDate: String,
+    val releaseDate: String,
     @ColumnInfo(name = "popularity")
-    var popularity: Double,
-    @ColumnInfo(name = "millis")
-    var millis: Long = System.currentTimeMillis()
+    val popularity: Double,
+    @ColumnInfo(name = "milis")
+    val millis: Long = System.currentTimeMillis()
 )

@@ -64,7 +64,7 @@ class FavoriteViewModelTest {
         viewModel.addFavoriteMovie(Constant.movie2)
 
         // remove favorite movie
-        viewModel.removeFavoriteMovie(Constant.movie1)
+        viewModel.removeFavoriteMovie(Constant.movie1.movieId ?: 0)
 
         // get all favorite movie
         viewModel.getFavoriteMovies()
@@ -98,7 +98,7 @@ class FavoriteViewModelTest {
         viewModel.addFavoriteMovie(Constant.movie4)
 
         //get favorite by movie id
-        viewModel.getFavoriteMovie(Constant.movie1.movieId)
+        viewModel.getFavoriteMovie(Constant.movie1.movieId ?: 0)
         val result = viewModel.getFavoriteMovieById.getOrAwaitValue()
 
         val expectationEntity = Constant.movie1

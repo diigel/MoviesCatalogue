@@ -9,14 +9,14 @@ import com.dani.favorites.data.entity.FavoriteEntity
 interface FavoriteDao {
 
     @Query("select * from favorite order by millis desc")
-     fun getMovieFavorite() : List<FavoriteEntity>
+    suspend fun getMovieFavorite(): List<FavoriteEntity>
 
     @Insert
-     fun insertFavorite(entity: FavoriteEntity)
+    suspend fun insertFavorite(entity: FavoriteEntity)
 
-    @Query("delete from favorite where movie_id = :movie_id")
-    fun deleteFavorite(movie_id :Int)
+    @Query("delete from favorite where movie_id = :movieId")
+    suspend fun deleteFavorite(movieId: Int)
 
-    @Query("select * from favorite where movie_id = :movie_id")
-    fun getFavoriteById(movie_id:Int) : FavoriteEntity
+    @Query("select * from favorite where movie_id = :movieId")
+    suspend fun getFavoriteById(movieId: Int): FavoriteEntity
 }
