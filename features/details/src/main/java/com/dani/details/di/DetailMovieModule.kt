@@ -1,6 +1,7 @@
 package com.dani.details.di
 
 import com.dani.details.data.Services
+import com.dani.details.repository.DetailMovieRepository
 import com.dani.details.repository.DetailMovieRepositoryImp
 import com.dani.details.viewmodel.DetailMovieViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -11,7 +12,7 @@ val detailMovieServices = module {
 }
 
 val detailMovieRepositoryImp = module {
-    single { DetailMovieRepositoryImp(get()) }
+    single<DetailMovieRepository> { DetailMovieRepositoryImp(get()) }
 }
 
 val detailMovieViewModel = module {

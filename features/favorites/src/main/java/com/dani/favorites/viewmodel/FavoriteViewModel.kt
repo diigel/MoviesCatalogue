@@ -1,33 +1,43 @@
 package com.dani.favorites.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dani.favorites.data.entity.FavoriteEntity
 import com.dani.favorites.repository.FavoriteRepository
-import com.dani.favorites.data.entity.MovieEntity
 import kotlinx.coroutines.launch
 
 class FavoriteViewModel(private val repository: FavoriteRepository) : ViewModel() {
 
     val getFavoriteMovie = repository.movies
-    val getFavoriteMovieById = repository.movieById
+    val getFavoriteMovieById = repository.favoriteById
+
+    private val _navigateToDetailMovie : MutableLiveData<Int> = MutableLiveData()
+    val navigateToDetailMovie : LiveData<Int> = _navigateToDetailMovie
 
     fun getFavoriteMovies() = viewModelScope.launch {
         repository.getFavoriteMovies()
     }
 
-    fun getFavoriteMovie(movie_id: Int) = viewModelScope.launch {
-        repository.getFavoriteMovie(movie_id)
+    fun getFavoriteMovie(movieId: Int) = viewModelScope.launch {
+        repository.getFavoriteMovie(movieId)
     }
 
-    fun addFavoriteMovie(movieEntity: MovieEntity) = viewModelScope.launch {
-        repository.addFavoriteMovie(movieEntity)
+    fun addFavoriteMovie(favoriteEntity: FavoriteEntity) = viewModelScope.launch {
+        repository.addFavoriteMovie(favoriteEntity)
     }
 
-    fun removeFavoriteMovie(movieEntity: MovieEntity) = viewModelScope.launch {
-        repository.removeFavoriteMovie(movieEntity)
+    fun removeFavoriteMovie(movieId: Int) = viewModelScope.launch {
+        val entity = repository.getFavoriteMovieInline(movieId)
+        repository.removeFavoriteMovie(entity)
     }
 
-    fun checkFavoriteMovie(movie_id: Int) = viewModelScope.launch {
-        repository.checkFavorite(movie_id)
+    suspend fun requestCheckFavoriteById(movieId: Int): LiveData<Boolean> {
+        return repository.checkFavorite(movieId)
+    }
+
+    fun navigateToDetailMovie(movieId : Int) {
+        _navigateToDetailMovie.postValue(movieId)
     }
 }

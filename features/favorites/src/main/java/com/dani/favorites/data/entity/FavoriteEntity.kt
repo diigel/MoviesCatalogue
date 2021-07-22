@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import kotlin.random.Random
 
 @Entity(tableName = "favorite")
-data class MovieEntity(
+data class FavoriteEntity(
     @PrimaryKey(autoGenerate = true)
     val id : Int = Random.nextInt(),
     @ColumnInfo(name = "movie_id")
@@ -17,6 +17,12 @@ data class MovieEntity(
     var overview: String,
     @ColumnInfo(name = "poster_path")
     var posterPath: String,
+    @ColumnInfo(name = "backdrop_path")
+    var backdropPath: String,
+    @ColumnInfo(name = "release_date")
+    var releaseDate: String,
+    @ColumnInfo(name = "popularity")
+    var popularity: Double,
     @ColumnInfo(name = "millis")
     var millis : Long = System.currentTimeMillis()
 )

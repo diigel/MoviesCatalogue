@@ -1,23 +1,22 @@
 package com.dani.movies.data
 
 import com.dani.data.Network
-import com.dani.movies.data.entity.DiscoverMoviesResponse
+import com.dani.movies.data.entity.MoviesResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface Services {
 
     companion object {
-        const val DISCOVER = "discover/movie"
+        const val MOVIES = "movie/popular"
 
         fun create(): Services {
             return Network.build().create(Services::class.java)
         }
     }
 
-    @GET(DISCOVER)
-    suspend fun getDiscoverMovies(
-        @Query("api_key") apiKey : String,
-        @Query("sort_by") sortBy : String = "popularity.asc"
-    ) : DiscoverMoviesResponse
+    @GET(MOVIES)
+    suspend fun getMovies(
+        @Query("api_key") apiKey : String
+    ) : MoviesResponse
 }

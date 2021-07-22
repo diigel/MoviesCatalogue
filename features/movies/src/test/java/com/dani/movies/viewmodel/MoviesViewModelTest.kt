@@ -1,6 +1,7 @@
 package com.dani.movies.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.dani.data.toJson
 import com.dani.movies.data.Services
 import com.dani.movies.repository.MoviesRepository
 import com.dani.movies.repository.MoviesRepositoryImpl
@@ -53,20 +54,18 @@ class MoviesViewModelTest {
         val result = viewModel.movies.getOrAwaitValue()
 
         // create hardcore list id from  response
-        val expectationIds = listOf(851447, 851446, 851445, 851438, 851436)
+        val expectationIds = listOf(497698, 379686, 602223, 459151, 588228)
 
         // get list id from response
-        val resultIds = result.map { it.id }
+        val actual = result.map { it.id }
 
         // hardcore id and list id response must be the same
         println("result ----")
-        println(result)
+        println(result.toJson())
         println("result end ----")
-        println(resultIds)
-//        val assert = expectationIds == resultIds
-//        println(result)
-//        assert(assert)
-        assertEquals(expectationIds, resultIds)
+        println()
+
+        assertEquals(expectationIds, actual)
     }
 
 

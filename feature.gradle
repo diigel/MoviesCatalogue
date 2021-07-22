@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'koin'
 
 android {
     compileSdkVersion 30
@@ -28,6 +29,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 }
 
@@ -60,9 +65,21 @@ dependencies {
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2"
     testImplementation 'com.squareup.okhttp3:mockwebserver:4.9.0'
 
-    // di koin
-    implementation "io.insert-koin:koin-android:3.0.1"
+    // koin
+    implementation "io.insert-koin:koin-androidx-scope:$koin_version"
+    implementation "io.insert-koin:koin-androidx-viewmodel:$koin_version"
+    implementation "io.insert-koin:koin-androidx-fragment:$koin_version"
 
+    // navigation component
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+
+    // view binding helper
+    implementation 'com.github.yogacp:android-viewbinding:1.0.3'
+
+    // locale data
+    implementation 'androidx.room:room-runtime:2.3.0'
+    kapt 'androidx.room:room-compiler:2.3.0'
 
     // project module
     implementation project(":data")

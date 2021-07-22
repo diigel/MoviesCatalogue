@@ -1,9 +1,9 @@
 package com.dani.movies.repository
 
-import androidx.lifecycle.LiveData
-import com.dani.movies.data.entity.DiscoverMoviesDto
+import androidx.lifecycle.MutableLiveData
+import com.dani.movies.data.entity.MoviesDto
 
 interface MoviesRepository {
-    var result: LiveData<List<DiscoverMoviesDto>>
+    var result: MutableLiveData<List<MoviesDto>>
     suspend fun moviesList()
 }

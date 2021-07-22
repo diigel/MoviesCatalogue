@@ -1,14 +1,15 @@
 package com.dani.favorites.repository
 
 import androidx.lifecycle.LiveData
-import com.dani.favorites.data.entity.MovieEntity
+import com.dani.favorites.data.entity.FavoriteEntity
 
 interface FavoriteRepository {
-    var movies : LiveData<List<MovieEntity>>
-    var movieById : LiveData<MovieEntity>
+    var movies : LiveData<List<FavoriteEntity>>
+    var favoriteById : LiveData<FavoriteEntity>
     suspend fun getFavoriteMovies()
-    suspend fun getFavoriteMovie(movie_id: Int)
-    suspend fun checkFavorite(movie_id : Int) : LiveData<Boolean>
-    suspend fun addFavoriteMovie(movieEntity: MovieEntity)
-    suspend fun removeFavoriteMovie(movieEntity: MovieEntity)
+    suspend fun getFavoriteMovie(movieId: Int)
+    suspend fun getFavoriteMovieInline(movieId: Int): FavoriteEntity
+    suspend fun checkFavorite(movieId : Int) : LiveData<Boolean>
+    suspend fun addFavoriteMovie(favoriteEntity: FavoriteEntity)
+    suspend fun removeFavoriteMovie(favoriteEntity: FavoriteEntity)
 }

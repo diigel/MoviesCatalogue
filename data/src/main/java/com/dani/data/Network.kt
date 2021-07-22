@@ -10,6 +10,7 @@ object Network {
 
     private const val BASE_URL = "https://api.themoviedb.org/3/"
     const val API_KEY = "50907bc16bd8b78096af6e624c63332d"
+    const val IMG_URL = "https://image.tmdb.org/t/p/w500/"
 
     private fun provideLoggingInterceptor(): HttpLoggingInterceptor {
 
@@ -23,7 +24,7 @@ object Network {
         return loggingInterceptor
     }
 
-    fun provideOkHttpClient(): OkHttpClient {
+    private fun provideOkHttpClient(): OkHttpClient {
         val builder = OkHttpClient.Builder()
             .addInterceptor(provideLoggingInterceptor())
             .retryOnConnectionFailure(false)

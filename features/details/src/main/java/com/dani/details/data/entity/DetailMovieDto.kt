@@ -6,6 +6,7 @@ data class DetailMovieDto(
     val overview: String,
     val popularity: Double,
     val status: String,
-    val backdrop_path: String,
-    val poster_path: String
+    val releaseDate: String,
+    val posterPath : String,
+    val backdropPath : String
 )

@@ -3,11 +3,11 @@ package com.dani.movies.data.entity
 
 import com.google.gson.annotations.SerializedName
 
-data class DiscoverMoviesResponse(
+data class MoviesResponse(
     @SerializedName("page")
     var page: Int?,
     @SerializedName("results")
-    var results: List<Result>?,
+    var results: List<Result?>?,
     @SerializedName("total_pages")
     var totalPages: Int?,
     @SerializedName("total_results")
@@ -17,7 +17,7 @@ data class DiscoverMoviesResponse(
         @SerializedName("adult")
         var adult: Boolean?,
         @SerializedName("backdrop_path")
-        var backdropPath: Any?,
+        var backdropPath: String?,
         @SerializedName("genre_ids")
         var genreIds: List<Int?>?,
         @SerializedName("id")
@@ -29,7 +29,7 @@ data class DiscoverMoviesResponse(
         @SerializedName("overview")
         var overview: String?,
         @SerializedName("popularity")
-        var popularity: Int?,
+        var popularity: Double?,
         @SerializedName("poster_path")
         var posterPath: String?,
         @SerializedName("release_date")
@@ -39,7 +39,7 @@ data class DiscoverMoviesResponse(
         @SerializedName("video")
         var video: Boolean?,
         @SerializedName("vote_average")
-        var voteAverage: Int?,
+        var voteAverage: Double?,
         @SerializedName("vote_count")
         var voteCount: Int?
     )
