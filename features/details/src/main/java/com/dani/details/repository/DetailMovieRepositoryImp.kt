@@ -17,15 +17,10 @@ class DetailMovieRepositoryImp(
     override var result: MutableLiveData<DetailMovieDto> = MutableLiveData()
 
     override suspend fun detailMovie(movieId: Int) {
-        println("repo is hereee --- ")
         val data = services.getDetailMovie(movieId, Network.API_KEY)
-        println("data response -----")
         println(data)
-        println("end data response -----")
         val dataDto = Mapper.mapDetailsMovieResponseToDto(data)
-        println("data dto -----")
         println(dataDto)
-        println("end data dto -----")
         result.postValue(dataDto)
     }
 }

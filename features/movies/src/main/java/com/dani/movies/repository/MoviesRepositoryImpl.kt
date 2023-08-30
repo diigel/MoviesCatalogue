@@ -7,6 +7,7 @@ import com.dani.movies.dao.MovieDao
 import com.dani.movies.data.Services
 import com.dani.movies.data.entity.MovieEntity
 import com.dani.movies.data.entity.MoviesDto
+import com.dani.movies.data.entity.UpComingDto
 import com.dani.movies.utils.Mapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -17,10 +18,12 @@ class MoviesRepositoryImpl(
 ) : MoviesRepository {
 
     private val _mutableMovies : MutableLiveData<List<MoviesDto>> = MutableLiveData()
+    private val _mutableUpComing : MutableLiveData<List<UpComingDto>> = MutableLiveData()
     private val _mutableLocalMovie : MutableLiveData<List<MovieEntity>> = MutableLiveData()
     private val _mutableLocalMovieById : MutableLiveData<MovieEntity> = MutableLiveData()
 
     override var movies: LiveData<List<MoviesDto>> =  _mutableMovies
+    override var upComing: LiveData<List<UpComingDto>> = _mutableUpComing
     override var localMovies: LiveData<List<MovieEntity>> = _mutableLocalMovie
     override var localMoviesById: LiveData<MovieEntity> = _mutableLocalMovieById
 
@@ -54,6 +57,12 @@ class MoviesRepositoryImpl(
         val data = service.getMovies(Network.API_KEY)
         val dataDto = Mapper.mapMoviesResponseToDto(data)
         _mutableMovies.postValue(dataDto)
+    }
+
+    override suspend fun upComingList() {
+        val data = service.getUpComing(Network.API_KEY)
+        val dataDto = Mapper.mapUpComingResponseToDto(data)
+        _mutableUpComing.postValue(dataDto)
     }
 
 }

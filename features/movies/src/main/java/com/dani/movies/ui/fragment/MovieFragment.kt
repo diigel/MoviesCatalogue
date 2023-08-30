@@ -1,7 +1,6 @@
 package com.dani.movies.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
 import android.widget.Toast
@@ -9,9 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dani.data.loaderDialog
-import com.dani.data.toJson
 import com.dani.movies.R
 import com.dani.movies.databinding.FragmentMovieBinding
+import com.dani.movies.ui.adapter.ImageSliderAdapter
 import com.dani.movies.ui.adapter.MovieAdapter
 import com.dani.movies.utils.Mapper
 import com.dani.movies.viewmodel.MoviesViewModel
@@ -23,6 +22,10 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
     private val movieAdapter by lazy {
         MovieAdapter()
     }
+
+    private val imageSliderAdapter by lazy {
+        ImageSliderAdapter()
+    }
     private val loader by lazy {
         context?.loaderDialog()
     }
@@ -30,6 +33,8 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.run {
+            viewPager.adapter = imageSliderAdapter
+            dotsIndicator.setViewPager2(viewPager)
             rvMovie.layoutManager = GridLayoutManager(context,1)
             rvMovie.adapter = movieAdapter
             movieAdapter.onClick {
@@ -38,31 +43,39 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
             }
         }
         viewModel.getLocaleMovies()
+        viewModel.getUpComing()
         initObserver()
     }
 
     private fun initObserver(){
         loader?.show()
-        viewModel.movies.observe(viewLifecycleOwner,{ data ->
+        viewModel.movies.observe(viewLifecycleOwner) { data ->
             loader?.dismiss()
-            Log.d("Movie Data ", "initObserver: remote data is -> ${data.toJson()}")
-            if (data != null){
+            if (data != null) {
                 movieAdapter.addList(data)
-            }else{
-                Toast.makeText(context,"Somthing went wrong",Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(context, getString(R.string.str_general_error), Toast.LENGTH_LONG).show()
             }
-        })
+        }
 
-        viewModel.localeMovies.observe(viewLifecycleOwner,{ localeData ->
-            Log.d("Locale Data", "initObserver: localeData is -> ${localeData.toJson()}")
+        viewModel.localeMovies.observe(viewLifecycleOwner) { localeData ->
             loader?.dismiss()
-            if (localeData.isNotEmpty()){
+            if (localeData.isNotEmpty()) {
                 val mapToMovieDto = Mapper.mapMovieEntityToDto(localeData)
                 movieAdapter.addList(mapToMovieDto)
-            }else{
+            } else {
                 viewModel.getMovies()
             }
-        })
+        }
+
+        viewModel.upComing.observe(viewLifecycleOwner) { dataUpComing ->
+            loader?.dismiss()
+            if (dataUpComing != null){
+                imageSliderAdapter.addList(dataUpComing.slice(0..5))
+            }else {
+                Toast.makeText(context, getString(R.string.str_general_error), Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
 }

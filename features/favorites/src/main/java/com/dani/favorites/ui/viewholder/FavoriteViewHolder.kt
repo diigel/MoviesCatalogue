@@ -15,6 +15,7 @@ class FavoriteViewHolder(private val binding: ItemListFavoriteBinding) :
         txtTitle.text = data.originalTitle
         txtRelease.text = data.releaseDate
         txtDescription.text = data.overview
+        txtRating.text = data.voteAverage.toString()
         imgPosterPath.loadImage(Network.IMG_URL + data.posterPath)
         imgBackdropPath.loadImage(Network.IMG_URL + data.backdropPath)
         itemView.setOnClickListener {

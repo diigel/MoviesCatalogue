@@ -34,13 +34,13 @@ class MainActivity : AppCompatActivity() {
             val navFragment = supportFragmentManager.findFragmentById(R.id.nav_host_container) as NavHostFragment
             NavigationUI.setupWithNavController(bottomNav,navFragment.navController)
 
-            movieViewModel.navigateToDetailMovie.observe(this@MainActivity,{
-                navigateToDetailMovie(navFragment,it)
-            })
+            movieViewModel.navigateToDetailMovie.observe(this@MainActivity) {
+                navigateToDetailMovie(navFragment, it)
+            }
 
-            favoriteViewModel.navigateToDetailMovie.observe(this@MainActivity,{
-                navigateToDetailMovie(navFragment,it)
-            })
+            favoriteViewModel.navigateToDetailMovie.observe(this@MainActivity) {
+                navigateToDetailMovie(navFragment, it)
+            }
 
             navFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
                 val currentIdRes = destination.id
@@ -48,30 +48,31 @@ class MainActivity : AppCompatActivity() {
                 txtSearch.isVisible = currentIdRes == R.id.movieFragment
             }
 
-            detailViewModel.requestCheckFavorite.observe(this@MainActivity, { id ->
+            detailViewModel.requestCheckFavorite.observe(this@MainActivity) { id ->
                 lifecycleScope.launch {
-                    favoriteViewModel.requestCheckFavoriteById(id).observe(this@MainActivity, { hasFavorite ->
-                        detailViewModel.setHasFavorite(hasFavorite)
-                    })
+                    favoriteViewModel.requestCheckFavoriteById(id)
+                        .observe(this@MainActivity) { hasFavorite ->
+                            detailViewModel.setHasFavorite(hasFavorite)
+                        }
                 }
-            })
+            }
 
-            detailViewModel.requestInsertFavorite.observe(this@MainActivity, { movieDto ->
+            detailViewModel.requestInsertFavorite.observe(this@MainActivity) { movieDto ->
                 favoriteViewModel.addFavoriteMovie(Mapper.mapDetailMovieDtoToFavoriteEntity(movieDto))
-            })
+            }
 
-            detailViewModel.requestRemoveFavorite.observe(this@MainActivity, { id ->
+            detailViewModel.requestRemoveFavorite.observe(this@MainActivity) { id ->
                 favoriteViewModel.removeFavoriteMovie(id)
-                navFragment.navController.popBackStack(R.id.favoriteFragment,true)
-            })
+                navFragment.navController.popBackStack(R.id.favoriteFragment, true)
+            }
 
-            txtSearch.setOnClickListener {
+            cardSearch.setOnClickListener {
                 navFragment.navController.navigate(R.id.searchFragment)
             }
 
-            searchViewModel.navigateToDetailMovie.observe(this@MainActivity,{
-               navigateToDetailMovie(navFragment,it)
-            })
+            searchViewModel.navigateToDetailMovie.observe(this@MainActivity) {
+                navigateToDetailMovie(navFragment, it)
+            }
 
         }
     }

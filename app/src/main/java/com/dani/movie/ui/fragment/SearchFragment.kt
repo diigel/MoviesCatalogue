@@ -40,7 +40,6 @@ class SearchFragment : Fragment(R.layout.fragment_search){
                 findNavController().popBackStack()
             }
             searchAdapter.onClick {
-                Log.d("Search Movie", "navigate detail is -> ${it.toJson()}")
                 val movieId = it.id
                 viewModel.navigateToDetailMovie(movieId)
             }
@@ -50,18 +49,19 @@ class SearchFragment : Fragment(R.layout.fragment_search){
     }
 
     private fun initObserver(){
-        viewModel.requestSearch.observe(viewLifecycleOwner,{
+        viewModel.requestSearch.observe(viewLifecycleOwner) {
             loader?.show()
             lifecycleScope.launch {
                 delay(1000)
                 loader?.dismiss()
-                if (it.isNotEmpty()){
+                if (it.isNotEmpty()) {
                     searchAdapter.addList(it)
-                }else{
-                    Toast.makeText(context, "Movie not found", Toast.LENGTH_SHORT).show()
+                    binding.rvSearch.smoothScrollToPosition(0)
+                } else {
+                    Toast.makeText(context, getString(R.string.movie_not_found), Toast.LENGTH_SHORT).show()
                 }
             }
-        })
+        }
     }
 
     private fun setupSearch() =  binding.run {

@@ -1,5 +1,5 @@
 apply from : '../../feature.gradle'
 
 dependencies {
-
+    implementation 'com.tbuonomo:dotsindicator:4.2'
 }
