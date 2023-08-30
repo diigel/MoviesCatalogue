@@ -52,7 +52,7 @@ class SearchFragment : Fragment(R.layout.fragment_search){
         viewModel.requestSearch.observe(viewLifecycleOwner) {
             loader?.show()
             lifecycleScope.launch {
-                delay(1000)
+                delay(800)
                 loader?.dismiss()
                 if (it.isNotEmpty()) {
                     searchAdapter.addList(it)
