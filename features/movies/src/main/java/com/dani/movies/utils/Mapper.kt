@@ -3,6 +3,8 @@ package com.dani.movies.utils
 import com.dani.movies.data.entity.MovieEntity
 import com.dani.movies.data.entity.MoviesDto
 import com.dani.movies.data.entity.MoviesResponse
+import com.dani.movies.data.entity.UpComingDto
+import com.dani.movies.data.entity.UpComingResponse
 
 object Mapper {
 
@@ -14,7 +16,8 @@ object Mapper {
                 overview = result?.overview ?: "",
                 posterPath = result?.posterPath ?: "",
                 releaseDate = result?.releaseDate ?: "",
-                backdropPath = result?.backdropPath ?: ""
+                backdropPath = result?.backdropPath ?: "",
+                voteAverage = result?.voteAverage ?: 0.0
             )
         } ?: emptyList()
     }
@@ -27,8 +30,21 @@ object Mapper {
                 overview = movieEntity.overview,
                 posterPath = movieEntity.posterPath,
                 releaseDate = movieEntity.releaseDate,
-                backdropPath = movieEntity.backdropPath
+                backdropPath = movieEntity.backdropPath,
+                voteAverage = movieEntity.voteAverage
             )
         }
+    }
+
+    fun mapUpComingResponseToDto(response: UpComingResponse?): List<UpComingDto> {
+        return response?.results?.map { result ->
+            UpComingDto(
+                id = result.id,
+                originalTitle = result.originalTitle,
+                releaseDate = result.releaseDate,
+                backdropPath = result.backdropPath,
+                posterPath = result.posterPath,
+            )
+        } ?: emptyList()
     }
 }

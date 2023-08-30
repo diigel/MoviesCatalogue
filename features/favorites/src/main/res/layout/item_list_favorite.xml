@@ -68,12 +68,29 @@
             app:layout_constraintStart_toStartOf="@+id/txt_description"
             app:layout_constraintTop_toBottomOf="@+id/txt_title"
             tools:ignore="SmallSp"
-            tools:text="movie_rating" />
+            tools:text="movie release date" />
+
+        <TextView
+            android:id="@+id/txt_rating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_title"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:ellipsize="end"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txt_description"
+            app:layout_constraintTop_toBottomOf="@+id/txt_release"
+            tools:text="movie release date"
+            app:drawableStartCompat="@drawable/ic_star" />
 
         <TextView
             android:id="@+id/txt_description"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="70dp"
             android:layout_below="@id/txt_release"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
@@ -81,23 +98,20 @@
             android:layout_toEndOf="@id/img_poster_path"
             android:ellipsize="end"
             android:textColor="@android:color/black"
-            app:layout_constraintBottom_toTopOf="@+id/line_id"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_poster_path"
-            app:layout_constraintTop_toBottomOf="@+id/txt_release"
+            app:layout_constraintTop_toBottomOf="@+id/txt_rating"
             tools:text="movie_description" />
 
         <View
             android:id="@+id/line_id"
             android:layout_width="0dp"
             android:layout_height="2dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@android:color/black"
-            android:visibility="visible"
+            android:background="@android:color/white"
             app:layout_constraintBottom_toTopOf="@+id/txt_more_info"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/img_poster_path" />
+            app:layout_constraintEnd_toEndOf="@+id/txt_description"
+            app:layout_constraintStart_toStartOf="@+id/txt_description"
+            app:layout_constraintTop_toBottomOf="@+id/txt_description" />
 
         <TextView
             android:id="@+id/txt_more_info"

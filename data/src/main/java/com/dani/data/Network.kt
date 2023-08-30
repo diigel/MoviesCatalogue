@@ -13,7 +13,6 @@ object Network {
     const val IMG_URL = "https://image.tmdb.org/t/p/w500/"
 
     private fun provideLoggingInterceptor(): HttpLoggingInterceptor {
-
         /**
          * @BODY if you need show all response
          * @BASIC only show end_point response

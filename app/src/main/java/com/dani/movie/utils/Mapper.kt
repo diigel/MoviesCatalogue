@@ -16,7 +16,8 @@ object Mapper {
             backdropPath = movieDto.backdropPath,
             releaseDate = movieDto.releaseDate,
             popularity = movieDto.popularity,
-            millis = System.currentTimeMillis()
+            millis = System.currentTimeMillis(),
+            voteAverage = movieDto.voteAverage
         )
     }
 
@@ -28,7 +29,8 @@ object Mapper {
                 overview = search?.overview ?: "",
                 posterPath = search?.posterPath ?: "",
                 releaseDate = search?.releaseDate ?: "",
-                backdropPath = search?.backdropPath ?: ""
+                backdropPath = search?.backdropPath ?: "",
+                voteAverage = search?.voteAverage ?: 0.0
             )
         } ?: emptyList()
     }

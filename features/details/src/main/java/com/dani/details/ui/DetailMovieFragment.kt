@@ -14,6 +14,7 @@ import com.dani.data.loaderDialog
 import com.dani.details.R
 import com.dani.details.data.entity.DetailMovieDto
 import com.dani.details.databinding.FragmentDetailMovieBinding
+import com.dani.details.utils.Constant.MOVIE_ID
 import com.dani.details.viewmodel.DetailMovieViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -28,7 +29,7 @@ class DetailMovieFragment : Fragment(R.layout.fragment_detail_movie) {
     }
 
     private val movieId by lazy {
-        arguments?.getInt("movie_id")
+        arguments?.getInt(MOVIE_ID)
     }
 
     private val drawableFavorite by lazy {
@@ -49,28 +50,28 @@ class DetailMovieFragment : Fragment(R.layout.fragment_detail_movie) {
 
     private fun initObserver(){
         loader?.show()
-        viewModel.detailMovie.observe(viewLifecycleOwner,{ data ->
+        viewModel.detailMovie.observe(viewLifecycleOwner) { data ->
             lifecycleScope.launch {
                 delay(2000)
                 loader?.dismiss()
-                if (data != null){
+                if (data != null) {
                     initView(data)
-                }else{
-                    Toast.makeText(context,"Something went wrong",Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(context, getString(R.string.str_general_error), Toast.LENGTH_LONG).show()
                 }
             }
-        })
+        }
     }
 
     private fun initView(data : DetailMovieDto) = binding.run {
         txtTitle.text = data.originalTitle
         txtReleaseDate.text = data.releaseDate
-        txtRating.text = data.popularity.toString()
+        txtRating.text = data.voteAverage.toString()
         txtOverview.text = data.overview
         imgMoviePoster.loadImage(Network.IMG_URL+data.posterPath)
         imgMovieBackdrop.loadImage(Network.IMG_URL+data.backdropPath)
         viewModel.checkHasFavorite(movieId)
-        viewModel.hasFavorite.observe(viewLifecycleOwner, { favorite ->
+        viewModel.hasFavorite.observe(viewLifecycleOwner) { favorite ->
             hasFavorite = favorite
             val drawable = if (favorite) {
                 drawableFavorite
@@ -78,15 +79,15 @@ class DetailMovieFragment : Fragment(R.layout.fragment_detail_movie) {
                 drawableUnFavorite
             }
             imgAddFavorite.setImageDrawable(drawable)
-        })
+        }
 
         imgAddFavorite.setOnClickListener {
             if (hasFavorite) {
                 viewModel.removeFavorite(data.id)
-                Toast.makeText(context, "Remove Favorite", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.str_removed_favorite), Toast.LENGTH_SHORT).show()
             } else {
                 viewModel.insertFavorite(data)
-                Toast.makeText(context, "Adding Favorite", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.str_adding_favorite), Toast.LENGTH_SHORT).show()
             }
 
             lifecycleScope.launch {
